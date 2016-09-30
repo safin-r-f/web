@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Users;
+use app\models\Adv;
 
 
 class SiteController extends Controller
@@ -62,8 +63,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = Users::find()->all();
-		return $this->render('index');
+       // $model = Users::find()->all();
+        $list_adv = Adv::find()->all();
+        $list_users = Users::find()->all();
+
+		return $this->render('index',['list_adv' => $list_adv, 'list_users' => $list_users]);
+
+
     }
 
     /**
