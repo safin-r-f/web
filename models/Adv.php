@@ -25,6 +25,10 @@ class Adv extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categories::className(), ['id' => 'id_category']);
     }
+    public function getUsers()
+    {
+        return $this->hasOne(Users::className(), ['id' => 'creator']);
+    }
     /**
      * @inheritdoc
      */
