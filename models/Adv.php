@@ -21,6 +21,10 @@ use Yii;
  */
 class Adv extends \yii\db\ActiveRecord
 {
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['id' => 'id_category']);
+    }
     /**
      * @inheritdoc
      */
