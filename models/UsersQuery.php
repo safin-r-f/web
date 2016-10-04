@@ -9,6 +9,11 @@ namespace app\models;
  */
 class UsersQuery extends \yii\db\ActiveQuery
 {
+    public function byEmail($email)
+    {
+        return $this ->andWhere(['email' => $email]);
+    }
+
     /*public function active()
     {
         return $this->andWhere('[[status]]=1');
