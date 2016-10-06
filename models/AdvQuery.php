@@ -13,7 +13,10 @@ class AdvQuery extends \yii\db\ActiveQuery
     {
         return $this->andWhere('[[status]]=1');
     }*/
-
+    public function byEmail($email)
+    {
+        return $this ->andWhere(['email' => $email]);
+    }
     /**
      * @inheritdoc
      * @return Adv[]|array
