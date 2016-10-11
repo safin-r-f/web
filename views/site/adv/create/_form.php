@@ -2,19 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\helpers\ArrayHelper;
-use app\models\Categories;
-use app\models\Users;
-
-$categories = ArrayHelper::map(Categories::find()->all(), 'id', 'title');
-$users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
-
-// echo $form->field($model, 'id_category')->dropDownList(
-//    $categories,
-//    ['multiple' => 'multiple']
-//);
-
-
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Adv */
@@ -41,9 +28,9 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_category')->dropDownList($categories) ?>
+    <?= $form->field($model, 'id_category')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'creator')->dropDownList($users) ?>
+    <?= $form->field($model, 'creator')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

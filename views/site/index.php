@@ -32,6 +32,9 @@ $this->title = 'My Yii Application';
                         <li class="list-group-item">
                             <?php echo Html::encode($quest->title); ?>:
                             <?php echo Html::encode($quest->description); ?>
+                            <?php if (!empty($quest->image)):?>
+                                <img src="<?php echo Html::encode($quest->image); ?>" />
+                            <?php endif?>
                         </li>
                     <?php endforeach; ?>
                 </ul>

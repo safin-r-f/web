@@ -52,14 +52,16 @@ $config = [
                 '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<module>/<controller>/<action>' => '<module>/<controller>/<action>',
+                '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
