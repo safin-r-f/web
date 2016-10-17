@@ -14,6 +14,7 @@ use app\models\Adv;
 
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */

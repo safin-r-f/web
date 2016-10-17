@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 
@@ -29,13 +30,15 @@ $this->title = 'My Yii Application';
                 <!-- List group -->
                 <ul class="list-group">
                     <?php foreach ($list_adv as $key => $quest): ?>
-                        <li class="list-group-item">
+                        <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
+                            <li class="list-group-item">
                             <?php echo Html::encode($quest->title); ?>:
                             <?php echo Html::encode($quest->description); ?>
                             <?php if (!empty($quest->image)):?>
                                 <img src="<?php echo Html::encode($quest->image); ?>" />
                             <?php endif?>
                         </li>
+                        </a>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>

@@ -19,8 +19,20 @@ use Yii;
  * @property string $id_category
  * @property string $creator
  */
+
 class Adv extends \yii\db\ActiveRecord
 {
+    //задает дату создания объявления
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->date_public = date("Y-m-d H:i:s");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getCategory()
     {
         return $this->hasOne(Categories::className(), ['id' => 'id_category']);

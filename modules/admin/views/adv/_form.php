@@ -31,7 +31,7 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
 
     <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date_public')->textInput() ?>
+    <?php //= $form->field($model, 'date_public')->textInput() ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
