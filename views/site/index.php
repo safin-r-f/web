@@ -5,6 +5,9 @@ use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use app\models\Categories;
 use app\models\Users;
+use yii\i18n\Formatter;
+use yii\base\Component;
+use yii\base\Object;
 
 /* @var $this yii\web\View */
 
@@ -44,11 +47,15 @@ $this->title = 'My Yii Application';
                                 <div class="col-md-9">
                                     <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
                                      <?php echo Html::encode($quest->title); ?></a><br>
-                                    <?php echo Html::encode($quest->price); ?><br>
-                                    <?php echo Html::encode($quest->date_public); ?><br>
+                                    <?php echo Yii::$app->formatter->asCurrency($quest->price, null, [
+                                        \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                                    ]);
+                                    //echo Html::encode($quest->price); ?><br>
+                                    <?php echo Yii::$app->formatter->asDate($quest->date_public);
+                                       // echo Html::encode($quest->date_public); ?><br>
                                     <?php echo Html::encode($quest->category->title); ?>
                                 </div>
-                                                           
+
                             </div>
                         </li>
                     <?php endforeach; ?>
