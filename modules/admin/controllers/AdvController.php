@@ -65,7 +65,7 @@ class AdvController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Adv();
+        $model = new AdvSearch();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use app\models\Categories;
+use app\models\Users;
 
 /* @var $this yii\web\View */
 
@@ -9,13 +12,13 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
+    <!--<div class="jumbotron">
         <h1>Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+    </div>-->
 
     <div class="body-content">
 
@@ -30,17 +33,27 @@ $this->title = 'My Yii Application';
                 <!-- List group -->
                 <ul class="list-group">
                     <?php foreach ($list_adv as $key => $quest): ?>
-                        <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
-                            <li class="list-group-item">
-                            <?php echo Html::encode($quest->title); ?>:
-                            <?php echo Html::encode($quest->description); ?>
-                            <?php if (!empty($quest->image)):?>
-                                <img src="<?php echo Html::encode($quest->image); ?>" />
-                            <?php endif?>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <?php if (!empty($quest->image)):?>
+                                        <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
+                                            <img src="<?php echo Html::encode($quest->image); ?> " height="128" /></a>
+                                    <?php endif?>
+                                </div>
+                                <div class="col-md-9">
+                                    <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
+                                     <?php echo Html::encode($quest->title); ?></a><br>
+                                    <?php echo Html::encode($quest->price); ?><br>
+                                    <?php echo Html::encode($quest->date_public); ?><br>
+                                    <?php echo Html::encode($quest->category->title); ?>
+                                </div>
+                                                           
+                            </div>
                         </li>
-                        </a>
                     <?php endforeach; ?>
                 </ul>
+
             <?php endif; ?>
         </div>
 

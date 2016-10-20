@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Security;
 
 /**
  * This is the model class for table "{{%users}}".
@@ -19,6 +20,13 @@ use Yii;
 
 class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public function setPassword($password)
+    {
+        //$this->password = sha1($password);
+        //Security::generatePasswordHash($this->password);
+        $this->password = Yii::$app->security->generatePasswordHash($password);
+    }
+
     /**
      * @inheritdoc
      */
@@ -33,7 +41,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['surname', 'name', 'second_name', 'email', 'phone_number', 'password'], 'required'],
+            [['name', 'email', 'phone_number', 'password'], 'required'],
             [['surname', 'name', 'second_name', 'email', 'phone_number', 'password'], 'string', 'max' => 255],
         ];
     }
