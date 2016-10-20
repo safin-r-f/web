@@ -46,14 +46,14 @@ $this->title = 'My Yii Application';
                                 </div>
                                 <div class="col-md-9">
                                     <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
-                                     <?php echo Html::encode($quest->title); ?></a><br>
-                                    <?php echo Yii::$app->formatter->asCurrency($quest->price, null, [
+                                    <?php echo Html::encode($quest->title); ?></a><br>
+                                    <?php echo "Цена: " . Yii::$app->formatter->asCurrency($quest->price, null, [
                                         \NumberFormatter::MAX_FRACTION_DIGITS => 0,
                                     ]);
                                     //echo Html::encode($quest->price); ?><br>
-                                    <?php echo Yii::$app->formatter->asDate($quest->date_public);
+                                    <?php echo "Дата размещения: " . Yii::$app->formatter->asDate($quest->date_public);
                                        // echo Html::encode($quest->date_public); ?><br>
-                                    <?php echo Html::encode($quest->category->title); ?>
+                                    <?php echo "Категория: " . Html::encode($quest->category->title); ?>
                                 </div>
 
                             </div>
