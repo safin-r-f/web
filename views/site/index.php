@@ -44,7 +44,7 @@ $this->title = 'My Yii Application';
                                             <img src="<?php echo Html::encode($quest->image); ?> " height="128" /></a>
                                     <?php endif?>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
                                     <?php echo Html::encode($quest->title); ?></a><br>
                                     <?php echo "Цена: " . Yii::$app->formatter->asCurrency($quest->price, null, [
@@ -58,7 +58,7 @@ $this->title = 'My Yii Application';
 
                                 <?php if ($quest->creator == \Yii::$app->user->id): ?>
 
-                                    <div class="col-md-1">
+                                    <div class="col-md-2">
                                         <div class="form-group">
                                             <?= Html::a("Изменить объявление", ['adv/update', 'id'=>$quest->id]) ?>
                                         </div>
