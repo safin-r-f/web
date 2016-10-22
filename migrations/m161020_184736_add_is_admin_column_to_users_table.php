@@ -20,6 +20,6 @@ class m161020_184736_add_is_admin_column_to_users_table extends Migration
      */
     public function down()
     {
-        $this->dropTable('{{%users}}');
+        $this->dropColumn('users', 'is_admin');
     }
 }

@@ -26,7 +26,6 @@ class AdminList extends Model implements \yii\web\IdentityInterface
     }
 
 
-    // Тест начало
     public static function findIdentity($id)
     {
         return static::findOne($id);
@@ -79,5 +78,5 @@ class AdminList extends Model implements \yii\web\IdentityInterface
     {
         return Yii::$app->getSecurity()->validatePassword($password, $this->password);
     }
-    // Тест конец
+
 }

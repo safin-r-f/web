@@ -14,6 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'surname')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'is_admin')->checkbox() ?>
+
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'second_name')->textInput(['maxlength' => true]) ?>

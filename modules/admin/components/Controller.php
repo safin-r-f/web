@@ -4,6 +4,8 @@ namespace app\modules\admin\components;
 
 use yii\filters\AccessControl;
 
+
+
 /**
  * Базовый контроллер административной части
  */
@@ -12,6 +14,9 @@ class Controller extends \yii\web\Controller
     /**
      * Закрываем контроллер от неавторизованных юзеров
      */
+  
+
+
     public function behaviors ()
     {
         //получаем поведения, определенные в классе-родителе
@@ -28,6 +33,10 @@ class Controller extends \yii\web\Controller
                         'allow' => true,
                         //@ означает только авторизованных пользователей
                         'roles' => ['@'],
+                        //
+                        'matchCallback' => function ($rule, $action) {
+                            return (bool) \Yii::$app->user->identity->is_admin;
+                        }
                     ],
                 ],
             ],

@@ -43,6 +43,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             [['name', 'email', 'phone_number', 'password'], 'required'],
             [['surname', 'name', 'second_name', 'email', 'phone_number', 'password'], 'string', 'max' => 255],
+            [['is_admin'], 'filter', 'filter' => 'intval'],
         ];
     }
 
@@ -59,6 +60,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'email' => 'почта',
             'phone_number' => 'номер телефона',
             'password' => 'пароль',
+            'is_admin' => 'является администратором',
         ];
     }
 
