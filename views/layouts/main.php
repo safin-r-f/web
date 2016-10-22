@@ -37,7 +37,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Подать объявление', 'url' => ['/admin/adv/create']],
+            ['label' => 'Подать объявление', 'url' => ['/adv/create']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход и регистрация', 'url' => ['/site/login']]

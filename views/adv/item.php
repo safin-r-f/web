@@ -32,3 +32,4 @@ use yii\widgets\DetailView;
     ]) ?>
     <code><?= __FILE__ ?></code>
 </div>
+

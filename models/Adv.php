@@ -27,6 +27,7 @@ class Adv extends \yii\db\ActiveRecord
     {
         if (parent::beforeSave($insert)) {
             $this->date_public = date("Y-m-d H:i:s");
+            $this->creator = Yii::$app->user->id;
             return true;
         } else {
             return false;
@@ -55,7 +56,7 @@ class Adv extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'price', 'image', 'date_public', 'phone_number', 'email', 'id_category', 'creator'], 'required'],
+            [['title', 'price', 'image', 'phone_number', 'email', 'id_category'], 'required'],
             [['price'], 'number'],
             [['date_public'], 'safe'],
             [['description', 'address'], 'string'],
