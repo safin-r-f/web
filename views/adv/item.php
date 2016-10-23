@@ -28,6 +28,7 @@ use yii\widgets\DetailView;
             'email:email',
             'id_category',
             'creator',
+            'foto',
         ],
     ]) ?>
     <code><?= __FILE__ ?></code>

@@ -39,11 +39,18 @@ $this->title = 'My Yii Application';
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-3" align="center">
+                                    <?php if (!empty($quest->foto)):?>
+                                        <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
+                                            <img src="<?php echo Html::encode($quest->foto); ?> " height="128" /></a>
+                                    <?php endif?>
+                                </div>
+
+                                <!--<div class="col-md-3" align="center">
                                     <?php if (!empty($quest->image)):?>
                                         <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
                                             <img src="<?php echo Html::encode($quest->image); ?> " height="128" /></a>
                                     <?php endif?>
-                                </div>
+                                </div>-->
                                 <div class="col-md-7">
                                     <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
                                     <?php echo Html::encode($quest->title); ?></a><br>

@@ -10,6 +10,8 @@ use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
+use app\models\UploadForm;
 
 /**
  * AdvController implements the CRUD actions for Adv model.
@@ -56,6 +58,7 @@ class AdvController extends Controller
         return $this->render('update', ['model'=>$model]);
     }
 
+    /* базовая версия до foto
     public function actionCreate()
     {
         $model = new Adv();
@@ -65,7 +68,30 @@ class AdvController extends Controller
         
         return $this->render('create', ['model'=>$model]);
         
+    }*/
+    
+    //foto
+    public function actionCreate()
+    {
+        $model = new Adv();
+        if($model->load(Yii::$app->request->post()))
+        {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                $imagepath = 'uploads/';
+                $model->foto = $imagepath .rand(10, 100).$model->file->name;
+            }
+
+        if ($model->save()) {
+            if ($model->file && $model->validate()) {
+                $model->file->saveAs($model->foto);
+            }
+            return $this->redirect('/site/index');
+        }
+        }
+        return $this->render('create', ['model'=>$model]);
     }
+
 
     public function actionItem($id)
     {

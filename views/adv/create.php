@@ -42,6 +42,9 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'id_category')->dropDownList($categories) ?>
+
+     <?= $form->field($model, 'file')->fileInput(); ?>
+
     
 
     <div class="form-group">

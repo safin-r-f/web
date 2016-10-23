@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Model; // foto
+use yii\web\UploadedFile; // foto
 
 /**
  * This is the model class for table "{{%adv}}".
@@ -22,6 +24,20 @@ use Yii;
 
 class Adv extends \yii\db\ActiveRecord
 {
+    public $file; //foto
+
+    //foto
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->file->saveAs('uploads/' . $this->file->baseName . '.' . $this->file->extension);
+            //или вот здесь реализовать метод, который сохраняет имя файла в базу                        
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //задает дату создания объявления
     public function beforeSave($insert)
     {
@@ -59,9 +75,11 @@ class Adv extends \yii\db\ActiveRecord
             [['title', 'price', 'image', 'phone_number', 'email', 'id_category'], 'required'],
             [['price'], 'number'],
             [['date_public'], 'safe'],
-            [['description', 'address'], 'string'],
+            [['description', 'address', 'foto'], 'string'],
             [['id_category', 'creator'], 'integer'],
             [['title', 'image', 'phone_number', 'email'], 'string', 'max' => 255],
+            [['file'], 'safe'],
+            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'], //foto
         ];
     }
 
@@ -82,6 +100,8 @@ class Adv extends \yii\db\ActiveRecord
             'email' => 'почта в объявлении',
             'id_category' => 'id категории',
             'creator' => 'создатель объявления',
+            'foto' => 'фото', //foto
+            'file' => 'файлл', //foto
         ];
     }
 
