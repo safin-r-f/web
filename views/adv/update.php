@@ -43,6 +43,8 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
 
     <?= $form->field($model, 'id_category')->dropDownList($categories) ?>
 
+    <?= $form->field($model, 'file')->fileInput(); ?>
+
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

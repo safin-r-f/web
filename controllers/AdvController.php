@@ -43,7 +43,7 @@ class AdvController extends Controller
         return array_merge($return, $behaviors);
     }
 
-
+    /*
     public function actionUpdate ($id)
     {
         $model = Adv::findOne($id);
@@ -56,6 +56,29 @@ class AdvController extends Controller
         }
 
         return $this->render('update', ['model'=>$model]);
+    }*/
+
+    public function actionUpdate ($id)
+    {
+        $model = Adv::findOne($id);
+        if (!$model || $model->creator != Yii::$app->user->id)
+        {
+            throw new HttpException(404);
+        }
+        if($model->load(Yii::$app->request->post())) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+            if ($model->file) {
+                $imagepath = 'uploads/';
+                $model->foto = $imagepath .rand(10, 100).$model->file->name;
+            }
+            if ($model->save()) {
+                if ($model->file && $model->validate()) {
+                    $model->file->saveAs($model->foto);
+                }
+                return $this->redirect('/');
+            }
+        }
+        return $this->render('update', ['model'=>$model]);
     }
 
     /* базовая версия до foto
@@ -65,29 +88,26 @@ class AdvController extends Controller
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['site/index']);
         }
-        
+
         return $this->render('create', ['model'=>$model]);
-        
+
     }*/
-    
     //foto
     public function actionCreate()
     {
         $model = new Adv();
-        if($model->load(Yii::$app->request->post()))
-        {
+        if($model->load(Yii::$app->request->post())) {
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file) {
                 $imagepath = 'uploads/';
                 $model->foto = $imagepath .rand(10, 100).$model->file->name;
             }
-
-        if ($model->save()) {
-            if ($model->file && $model->validate()) {
-                $model->file->saveAs($model->foto);
+            if ($model->save()) {
+                if ($model->file && $model->validate()) {
+                    $model->file->saveAs($model->foto);
+                }
+                return $this->redirect('/site/index');
             }
-            return $this->redirect('/site/index');
-        }
         }
         return $this->render('create', ['model'=>$model]);
     }

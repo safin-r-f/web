@@ -101,7 +101,7 @@ class Adv extends \yii\db\ActiveRecord
             'id_category' => 'id категории',
             'creator' => 'создатель объявления',
             'foto' => 'фото', //foto
-            'file' => 'файлл', //foto
+            'file' => 'файл', //foto
         ];
     }
 
