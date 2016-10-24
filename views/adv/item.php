@@ -13,24 +13,46 @@ use yii\widgets\DetailView;
     <?= DetailView::widget([
         'model' => $item,
         'attributes' => [
-            'id',
+            //'id',
             'title',
-            'price',
+            //'foto:image',
             [
+                'attribute'  => 'foto',
+                'value'  => '../' . $item->foto,
+                'format' => ['image', ['height'=>'500']],
+            ],
+            /*[
                 'attribute'  => 'image',
                 'value'  => $item->image ? Html::img($item->image) : '',
                 'format' => 'raw',
+            ],*/
+            'price',
+            [
+                'attribute'  => users,
+                'label' => 'Продавец',
+                'value'  => $item->users->name . ' ' . $item->users->surname,
             ],
             'date_public:date',
-            'description:ntext',
-            'address:ntext',
             'phone_number',
-            'email:email',
-            'id_category',
-            'creator',
-            'foto',
+            //'email:email',
+            [
+                'attribute'  => email,
+                'value'  => !empty($item->email) ? $item->email : 'не указан',
+            ],
+            //'address:ntext',
+            [
+                'attribute'  => address,
+                'value'  => !empty($item->address) ? $item->address : 'не указан',
+            ],
+            [
+                'attribute'  => category,
+                'label' => 'Категория',
+                'value'  => $item->category->title,
+            ],
+            'description:ntext',
+
         ],
     ]) ?>
-    <code><?= __FILE__ ?></code>
+
 </div>
 

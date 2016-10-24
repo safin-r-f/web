@@ -29,7 +29,7 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
 
     <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?php //= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
     <?php //= $form->field($model, 'date_public')->textInput() ?>
 

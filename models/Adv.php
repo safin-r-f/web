@@ -72,7 +72,7 @@ class Adv extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'price', 'image', 'phone_number', 'email', 'id_category'], 'required'],
+            [['title', 'price', 'phone_number', 'id_category', 'description'], 'required'],
             [['price'], 'number'],
             [['date_public'], 'safe'],
             [['description', 'address', 'foto'], 'string'],
@@ -90,18 +90,18 @@ class Adv extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'id объявления',
-            'title' => 'заголовок объявления',
-            'price' => 'цена',
+            'title' => 'Заголовок',
+            'price' => 'Цена',
             'image' => 'картинка',
-            'date_public' => 'дата размещения',
-            'description' => 'описание',
-            'address' => 'адрес',
-            'phone_number' => 'номер телефона в объявлении',
-            'email' => 'почта в объявлении',
+            'date_public' => 'Дата размещения',
+            'description' => 'Описание',
+            'address' => 'Адрес',
+            'phone_number' => 'Контактный номер телефона',
+            'email' => 'Email',
             'id_category' => 'id категории',
             'creator' => 'создатель объявления',
-            'foto' => 'фото', //foto
-            'file' => 'файл', //foto
+            'foto' => 'Изображение', //foto
+            'file' => 'Загрузить изображение', //foto
         ];
     }
 

@@ -106,7 +106,7 @@ class AdvController extends Controller
                 if ($model->file && $model->validate()) {
                     $model->file->saveAs($model->foto);
                 }
-                return $this->redirect('/site/index');
+                return $this->redirect('/');
             }
         }
         return $this->render('create', ['model'=>$model]);

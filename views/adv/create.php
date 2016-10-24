@@ -29,19 +29,19 @@ $users = ArrayHelper::map(Users::find()->all(), 'id', 'name');
 
     <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?php //= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
     <?php //= $form->field($model, 'date_public')->textInput() ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
-
     <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'address')->textarea(['rows' => 1]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'id_category')->dropDownList($categories) ?>
+
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
      <?= $form->field($model, 'file')->fileInput(); ?>
 
