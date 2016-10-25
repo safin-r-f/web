@@ -41,7 +41,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-md-3" align="center">
                                     <?php if (!empty($quest->foto)):?>
                                         <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
-                                            <img src="<?php echo Html::encode($quest->foto); ?> " height="128" /></a>
+                                            <img src="<?php echo Html::encode('../' .$quest->foto); ?> " height="128" /></a>
                                     <?php endif?>
                                 </div>
 
@@ -53,13 +53,13 @@ $this->title = 'My Yii Application';
                                 </div>-->
                                 <div class="col-md-7">
                                     <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
-                                    <?php echo Html::encode($quest->title); ?></a><br>
+                                        <?php echo Html::encode($quest->title); ?></a><br>
                                     <?php echo "Цена: " . Yii::$app->formatter->asCurrency($quest->price, null, [
-                                        \NumberFormatter::MAX_FRACTION_DIGITS => 0,
-                                    ]);
+                                            \NumberFormatter::MAX_FRACTION_DIGITS => 0,
+                                        ]);
                                     //echo Html::encode($quest->price); ?><br>
                                     <?php echo "Дата размещения: " . Yii::$app->formatter->asDate($quest->date_public);
-                                       // echo Html::encode($quest->date_public); ?><br>
+                                    // echo Html::encode($quest->date_public); ?><br>
                                     <?php echo "Категория: " . Html::encode($quest->category->title); ?>
                                 </div>
 
@@ -67,22 +67,19 @@ $this->title = 'My Yii Application';
 
                                     <div class="col-md-2" align="right">
                                         <div class="form-group">
-                                            <?= Html::a("Изменить объявление",
-                                                ['adv/update', 'id'=>$quest->id],
-                                                [
-                                                    //'class' => 'btn btn-primary'
-                                                ]) ?>
+                                            <?= Html::a("Изменить объявление", ['adv/update', 'id'=>$quest->id]) ?>
                                             <p></p>
                                             <?= Html::a('Удалить объявление',
-                                                ['adv/delete', 'id' => $quest->id],
+                                                ['adv/deletemyadv', 'id' => $quest->id],
                                                 [
                                                     //'class' => 'btn btn-danger',
                                                     'data' => [
-                                                    'confirm' => 'Вы действительно хотите удалить объявление?',
-                                                    'method' => 'post',
+                                                        'confirm' => 'Вы действительно хотите удалить объявление?',
+                                                        'method' => 'post',
                                                     ],
-                                            ]) ?>
+                                                ]) ?>
                                         </>
+                                        </div>
                                     </div>
                                 <?php endif?>
 
@@ -94,23 +91,7 @@ $this->title = 'My Yii Application';
             <?php endif; ?>
         </div>
 
-                <div class="panel-heading">Пользователи</div>
-                <?php if (empty($list_users)): ?>
-                    <div class="panel-body">
-                        <p>Пользователей не найдено</p>
-                    </div>
-                <?php else: ?>
-                    <!-- List group -->
-                    <ul class="list-group">
-                        <?php foreach ($list_users as $key => $quest): ?>
-                            <li class="list-group-item">
-                                <?php echo Html::encode($quest->name); ?>:
-                                <?php echo Html::encode($quest->phone_number); ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php endif; ?>
-            </div>
 
-    </div>
+
+</div>
 </div>

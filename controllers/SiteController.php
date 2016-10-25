@@ -26,7 +26,7 @@ class SiteController extends Controller
             $model->attributes = Yii::$app->request->post('Signup');
             if($model->validate() && $model->signup())
             {
-                return $this->redirect('/');
+                return $this->redirect('index');
             }
         }
 
@@ -87,8 +87,6 @@ class SiteController extends Controller
         $list_users = Users::find()->all();
 
 		return $this->render('index',['list_adv' => $list_adv, 'list_users' => $list_users]);
-
-
     }
 
     /**

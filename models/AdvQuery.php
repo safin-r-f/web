@@ -17,6 +17,11 @@ class AdvQuery extends \yii\db\ActiveQuery
     {
         return $this ->andWhere(['email' => $email]);
     }
+
+    public function byCreator($creator)
+    {
+        return $this ->andWhere(['creator' => $creator]);
+    }
     /**
      * @inheritdoc
      * @return Adv[]|array

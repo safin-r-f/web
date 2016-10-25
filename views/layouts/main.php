@@ -36,20 +36,30 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
+            ['label' => 'Главная', 'url' => ['/']],
             ['label' => 'Подать объявление', 'url' => ['/adv/create']],
+
+            'items' => [
+                'label' => 'Мои объявления',
+                'visible' => !Yii::$app->user->isGuest,
+                'url' => ['/adv/myadv'],
+            ],
+
             //['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход и регистрация', 'url' => ['/site/login']]
             ) : (
+
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
                     'Выход (' . Yii::$app->user->identity->email . ')',
                     ['class' => 'btn btn-link']
                 )
+
                 . Html::endForm()
                 . '</li>'
+
             )
         ],
     ]);

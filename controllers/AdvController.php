@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Adv;
+use app\models\Users;
 use app\modules\admin\models\AdvSearch;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -113,13 +114,42 @@ class AdvController extends Controller
     }
 
 
+    public function actionMyadv()
+    {
+        // $model = Users::find()->all();
+        $list_adv = Adv::find()->where(['creator' => Yii::$app->user->id])->all();
+        //$list_myadv = Adv::find()->byCreator($this->id);
+        $list_users = Users::find()->all();
+
+        return $this->render('myadv',['list_adv' => $list_adv, 'list_users' => $list_users]);
+    }
+
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['/']);
+    }
+    public function actionDeletemyadv($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['adv/myadv']);
+    }
+    protected function findModel($id)
+    {
+        if (($model = Adv::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
     public function actionItem($id)
     {
         // $model = Users::find()->all();
         $item = Adv::find()->where(['id' => $id])->one();
 
         return $this->render('item',['item' => $item]);
-
-
     }
 }
