@@ -13,6 +13,8 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
 use app\models\UploadForm;
+use yii\imagine\Image;
+
 
 /**
  * AdvController implements the CRUD actions for Adv model.
@@ -75,6 +77,8 @@ class AdvController extends Controller
             if ($model->save()) {
                 if ($model->file && $model->validate()) {
                     $model->file->saveAs($model->foto);
+                    Image::thumbnail($model->foto, null, 128)
+                        ->save(('thumbs/'.$model->foto), ['quality' => 100]);
                 }
                 return $this->redirect('/');
             }
@@ -106,6 +110,8 @@ class AdvController extends Controller
             if ($model->save()) {
                 if ($model->file && $model->validate()) {
                     $model->file->saveAs($model->foto);
+                    Image::thumbnail($model->foto, 128, 128)
+                        ->save(('thumbs/'.$model->foto), ['quality' => 100]);
                 }
                 return $this->redirect('/');
             }

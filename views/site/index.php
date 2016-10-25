@@ -8,6 +8,7 @@ use app\models\Users;
 use yii\i18n\Formatter;
 use yii\base\Component;
 use yii\base\Object;
+use yii\imagine\Image;
 
 /* @var $this yii\web\View */
 
@@ -38,7 +39,15 @@ $this->title = 'My Yii Application';
                     <?php foreach ($list_adv as $key => $quest): ?>
                         <li class="list-group-item">
                             <div class="row">
+
                                 <div class="col-md-3" align="center">
+                                    <?php if (!empty($quest->foto)):?>
+                                        <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
+                                            <img src="<?php echo Html::encode('thumbs/'.$quest->foto); ?> " height="128" /></a>
+                                    <?php endif?>
+                                </div>
+
+                                <!--<div class="col-md-3" align="center">
                                     <?php if (!empty($quest->foto)):?>
                                         <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
                                             <img src="<?php echo Html::encode($quest->foto); ?> " height="128" /></a>
