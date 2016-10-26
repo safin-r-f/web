@@ -110,7 +110,7 @@ class AdvController extends Controller
             if ($model->save()) {
                 if ($model->file && $model->validate()) {
                     $model->file->saveAs($model->foto);
-                    Image::thumbnail($model->foto, 128, 128)
+                    Image::thumbnail($model->foto, null, 128)
                         ->save(('thumbs/'.$model->foto), ['quality' => 100]);
                 }
                 return $this->redirect('/');

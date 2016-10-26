@@ -41,7 +41,7 @@ $this->title = 'My Yii Application';
                                 <div class="col-md-3" align="center">
                                     <?php if (!empty($quest->foto)):?>
                                         <a href="<?php echo Url::to(['adv/item', 'id' => $quest->id]);?>">
-                                            <img src="<?php echo Html::encode('../' .$quest->foto); ?> " height="128" /></a>
+                                            <img src="<?php echo Html::encode('../'.'thumbs/'.$quest->foto); ?> " height="128" /></a>
                                     <?php endif?>
                                 </div>
 
